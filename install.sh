@@ -1,17 +1,21 @@
 #!/bin/bash
 
 # Growth and Craft — Install Script
-# Copies /mastery and /projects skills to your Claude Code commands folder
+# Copies all skills to your Claude Code commands folder
 
 mkdir -p ~/.claude/commands
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-cp "$SCRIPT_DIR/commands/mastery.md" ~/.claude/commands/mastery.md
-cp "$SCRIPT_DIR/commands/projects.md" ~/.claude/commands/projects.md
+SKILLS=(mastery projects peers leading weekprep projectupdate scope newproject review)
 
-echo "Installed /mastery and /projects to ~/.claude/commands/"
+for skill in "${SKILLS[@]}"; do
+  cp "$SCRIPT_DIR/commands/$skill.md" ~/.claude/commands/$skill.md
+done
+
+echo "Installed $(IFS=,; echo "${SKILLS[*]}" | sed 's|,|, /|g; s|^|/|') to ~/.claude/commands/"
 echo ""
 echo "Next steps:"
-echo "  1. Open ~/.claude/commands/mastery.md and update the Configuration section"
-echo "  2. Open Claude Code and type /mastery or /projects to get started"
+echo "  1. Open Claude Code and try /weekprep, /mastery, /projects, or any other skill"
+echo "  2. Optional: connect Fellow + Slack tools (see README)"
+echo "  3. Optional: set up Slack reminders (see README)"

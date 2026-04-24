@@ -1,84 +1,140 @@
 # Growth and Craft
 
-- Two Claude Code skills. Two prompts per week.
-- **Monday `/mastery`**: check in on personal growth, get 3 focus areas for the week
-- **Friday `/projects`**: reflect on what you worked on, generate a short human post
-- Both skills feed each other. Friday's reflections inform Monday's suggestions.
-- Pulls from Slack, Fellow, and Obsidian. Works without them too.
-- Saves to Obsidian. Copy to Vault or wherever you post.
+Nine Claude Code skills for staying sharp at work. They turn the things you'd normally forget — feedback, scope creep, peer dynamics, weekly progress — into a habit. Notes compound in your Obsidian vault over time.
+
+## At a glance
+
+| When | Skill | What it does |
+|---|---|---|
+| Monday morning | `/weekprep` | Calendar, action items, top priorities, coach thought |
+| Bi-weekly before 1:1 | `/mastery` | Personal growth report, pulls Fellow + Slack + Obsidian |
+| End of week | `/projectupdate` | Weekly project update post for the project channel |
+| End of week | `/projects` | Reflective weekly post in your voice |
+| After any review | `/review` | Routes Gemini transcript feedback to the right project files |
+| New project ask | `/newproject` | Forces role + scope intake before kickoff |
+| New ask, mid-flight | `/scope` | 7-question scope check — role, bandwidth, tripwire, flag sentence |
+| Anytime | `/leading` | Project lead checklist by phase |
+| Anytime | `/peers` | Capture peer feedback and observations |
+
+All nine connect through your Obsidian vault. Notes from each skill feed into the next.
 
 ---
 
-Inspired by Eric Hu's [claude-skills-weekly](https://github.com/er1chu/claude-skills-weekly) and my own habit tracking and bullet journaling practice, I wanted to build something tailored to how I personally work. These skills walk you through a conversation and help you articulate what you're working on, learning, and feeling.
+Inspired by Eric Hu's [claude-skills-weekly](https://github.com/er1chu/claude-skills-weekly) and my own habit-tracking and bullet-journaling practice. These skills walk you through a conversation and help you articulate what you're working on, leading, learning, and feeling.
 
-## `/mastery` — Personal Growth Report
+## The skills
 
-**When:** Monday morning
+### `/weekprep` — Monday morning briefing
 
-**What it does:**
+**When:** Monday 8:30am (Slack reminder)
 
-A 5-10 minute check-in about your personal development. It pulls context from:
-- Your recent 1:1 notes (Fellow)
-- Slack conversations with your manager (callm-for-slack)
-- Your growth goals (Obsidian)
-- Your previous mastery entries and project reflections
+Reads your calendar, action items, project files, manager DMs, and recent Gemini transcripts, then gives you a single scannable briefing: what's on the calendar, top 3 priorities, open action items, anything that needs a response, and one coach thought.
 
-Then it walks you through:
-- How are your growth areas going?
+### `/mastery` — Personal growth report
+
+**When:** Before your 1:1 with your manager (bi-weekly works well)
+
+A 5–10 minute check-in about your personal development. Pulls context from:
+- Recent 1:1 notes (Fellow)
+- Slack conversations with your manager
+- Growth goals (Obsidian)
+- Previous mastery entries and project reflections
+
+Walks you through:
+- Are your growth areas progressing?
 - What action items are open from your 1:1s?
 - What did your manager ask you to work on?
 - How's your energy and morale?
 - Any wins?
 
-**What you get:**
+**Output:** A dated markdown report saved to your vault with a "Top of Mind" scoreboard (themes that keep coming up rise to the top, resolved ones drop off) and 3 weekly focus suggestions. Plus a Slack-ready briefing snippet you can copy into your own DM.
 
-A dated markdown report saved to your Obsidian vault with two key things at the top:
+### `/projects` — Friday weekly reflection
 
-**"Top of Mind" scoreboard** — tracks your biggest growth levers over time:
-- Themes that keep coming up stay at the top (e.g., "running projects end to end")
-- Things that get resolved drop off
-- Ranked by how often they appear and how much impact they'd have
+**When:** End of week, when you actually want to reflect
 
-**3 weekly focus suggestions** — generated from both your mastery entries and your Friday project reflections:
-- `/projects` captures what you're actually doing and learning
-- `/mastery` reads that back to suggest where to put your energy this week
+Reads your project files and pulls Fellow + Slack context, then walks you through inspiration, project-by-project reflection, what's on your mind, and what's next. Output is a short post written in your voice — prose, not bullets, tuned to avoid AI writing tropes (no em dashes, no "I found myself...", no corporate filler).
 
-It helps you see:
-- Which growth areas are getting the most heat
-- Where you're stretching into new skills or responsibilities
-- Where there's an opportunity to make a move
+### `/projectupdate` — Weekly project update post
 
-**Why it matters:**
-- Keeps growth goals front of brain when you're heads down on projects
-- Carries forward action items you haven't finished
-- Gives you a clear "focus on these 3 things" to start each week
-- Great for prepping 1:1s, performance reviews, or just checking in with yourself
+**When:** Thursday/Friday afternoon, for projects you're leading
 
-## `/projects` — Weekly Work Report
+Pre-fills from your project file and action items, then asks: what shipped, what's next, any flags, when's the next director review. Outputs a Slack-ready code block in this format:
 
-**When:** Friday afternoon
+```
+:boom: *Weekly Update (week of April 21, 2026)*
 
-**What it does:**
+:white_check_mark: *This week:*
+• [What got done]
 
-A casual debrief about your week. It asks:
-- What projects you worked on
-- What happened with each one (not just what you shipped, but what you noticed or learned)
-- What inspired you this week (links, references, things you saw)
-- What you're reflecting on
-- What you're looking forward to next week
+:arrow_right: *Next week:*
+• [What's next]
 
-It also pulls context from Slack and Fellow meetings to jog your memory.
+:warning: *Flags:*
+• [OOO, blockers, dependencies]
 
-**What you get:**
-- A short, reflective post written in your voice
-- Prose, not bullet points
-- Tuned to avoid AI writing cliches (no em dashes, no "I found myself...", no corporate speak)
-- The kind of thing you'd actually want to read on someone's internal page
+:eyes: *Next director review:*
+• [Date + framing]
+```
 
-**Why it matters:**
-- Forces you to reflect on what you're learning, not just what you're shipping
-- Human and specific enough that people across the org might actually follow along
-- Feeds back into Monday's `/mastery` to surface growth patterns
+Hard rule: never includes personal/internal info (peer performance, capacity concerns, internal politics). Project channels are public.
+
+### `/review` — Process review feedback
+
+**When:** Right after any review (director, manager 1:1, office hours, project sync)
+
+Finds the Gemini transcript in Drive, extracts decisions, feedback, action items, and open questions, then shows you a routing plan: this goes to project A, this to project B, these action items to This Week.md, this peer feedback to your peer notes. Confirm and it writes everything.
+
+The point: zero feedback lost between the meeting and the work.
+
+### `/newproject` — New project setup
+
+**When:** Kicking off any new project
+
+Forces a role + scope intake first ("Are you owning, co-leading, consulting, or contributing?" + bandwidth, tripwires, flag-language drafting), then creates:
+- Obsidian project file with status, role, scope, tripwires, timeline
+- Working folder
+- `CLAUDE.md` so future Claude sessions have full context
+
+If you're leading, also adds a kickoff checklist (workback, working file, brief reviewed, cadence, ops engaged, reviews booked).
+
+### `/scope` — Mid-flight scope check
+
+**When:** New ask comes in, scope is growing, you catch yourself saying "I'll figure it out"
+
+Lightweight sibling of `/newproject`. 7 questions: what's the ask, what role, does the asker agree, timeline, bandwidth, tripwire, flag sentence, who needs to know.
+
+Auto-suggested when you say absorb-pattern phrases ("joining", "helping on", "I'll figure it out", "just a few hours") — meant to catch you before you commit to something you'll regret in three weeks.
+
+### `/leading` — Project lead checklist
+
+**When:** Anytime you want to make sure you're covering your bases as a lead
+
+Reads your role doc and active projects, walks through phase-specific lead responsibilities (briefing → exploration → build → post-launch), and flags scope creep, stakeholder issues, comms gaps. Generates a project-specific checklist for the week.
+
+Also runs in the background of any conversation — if you mention a project you're leading, it'll proactively check on file hygiene, weekly updates, scope creep.
+
+### `/peers` — Peer feedback notes
+
+**When:** Anytime, especially before reviews
+
+Reads your peer files and asks about the people you work with, one at a time. Captures observations, feedback to give, feedback received, in dated notes that compound over time. When review season hits, pull from this instead of trying to remember six months of work.
+
+## How they connect
+
+All skills read and write to your Obsidian vault. Notes compound:
+
+| Skill | Reads | Writes |
+|-------|-------|--------|
+| `/weekprep` | Calendar, action items, projects, Slack DMs, Drive transcripts, growth memory | — (briefing only) |
+| `/mastery` | Previous mastery entries, project reflections, growth goals, Fellow, Slack | Dated mastery report, fresh `This Week.md` |
+| `/projects` | Project files, action items, Fellow, Slack | Dated weekly reflection, appends to project files |
+| `/projectupdate` | Project files, action items, Slack history, Drive transcripts | Timeline entry on the project file |
+| `/review` | Gemini transcripts, project files | Project files, `This Week.md`, peer files |
+| `/newproject` | — | New project file, working folder, `CLAUDE.md` |
+| `/scope` | — | Optionally appends to project file |
+| `/leading` | Role doc, project files | Action items in `This Week.md` |
+| `/peers` | `Peers/*.md` | Appends dated notes per person |
 
 ## Setup
 
@@ -90,58 +146,53 @@ cd growth-and-craft
 ./install.sh
 ```
 
-That's it. Both skills are now available as `/mastery` and `/projects` in Claude Code.
+All nine skills are now available in `~/.claude/commands/`.
 
 ### 2. Connect your tools (optional but recommended)
 
-These skills pull context from your work tools so you don't have to remember everything yourself. Set these up before your first run so the skills have something to work with.
+These skills pull context from your work tools so you don't have to remember everything yourself.
 
-| Server | What it gives you | How to add it |
+| Tool | What it gives you | How to add it |
 |--------|-------------------|---------------|
-| **callm-for-slack** | Slack conversations with your manager, discussion summaries, decision tracking | `claude mcp add --scope user callm-for-slack` |
-| **obsidian** | Reads/writes growth reports to your local vault | `claude mcp add --scope user obsidian` (see your org's setup) |
-| **fellow-mcp** | 1:1 meeting notes, action items, summaries | Not yet supported in Claude Code (Fellow uses `streamable-http` transport) |
+| **Fellow** | 1:1 notes, AI summaries, action items, channels | Claude Code: `claude mcp add --scope user --transport http fellow-mcp https://fellow.app/mcp`. Or use [pi](https://github.com/badlogic/pi-mono) with a Fellow MCP extension. |
+| **Slack** | Manager DMs, channel activity, decision tracking | Read-only Slack tools via Claude Code MCP or pi extensions. Skills assume tool names like `slack_search_users`, `slack_search_public_and_private`, `slack_read_channel` — adjust to your provider. |
+| **Google Workspace** | Calendar, Drive (Gemini transcripts), Docs | Claude Code MCP or pi `gworkspace` extension. Skills assume `gcal_events`, `gws_drive_search`, `gws_docs_read` / `gworkspace_read_file`. |
 
-None are required. If a server isn't connected, the skill skips it and just asks you directly. Works fine with zero MCP servers, you'll just be working from memory.
+None are required. If a tool isn't connected, the skill skips it and just asks you directly. Works fine with zero MCP servers — you'll just be working from memory.
 
-**Why Obsidian?** Mastery saves your growth reports as dated markdown files in an Obsidian vault. Obsidian is free, local-first, and your notes never leave your machine. Over time you build a personal archive of your growth that's searchable, linkable, and entirely yours. If you don't have it yet, grab it at [obsidian.md](https://obsidian.md). You can also skip Obsidian and just use the copy-paste output.
+**Why Obsidian?** These skills save everything as dated markdown files in an Obsidian vault. Obsidian is free, local-first, and your notes never leave your machine. Over time you build a personal archive of your growth, projects, peers, and leadership that's searchable, linkable, and entirely yours. If you don't have it yet, grab it at [obsidian.md](https://obsidian.md). You can also skip Obsidian and just use the copy-paste output.
 
-### 3. Run `/mastery` for the first time
+### 3. First run
 
-The first time you run it, it will ask you:
-- Your manager's name
-- Their Slack handle
-- Where your Obsidian vault lives
+The first time you run a skill, it'll ask you for the basics: your manager's name, where your Obsidian vault lives, etc. No config files to edit.
 
-No config files to edit. Just answer the questions in the chat.
+### 4. Set up Slack reminders (optional)
 
-### 4. Set up reminders (optional)
-
-Slack reminders so you don't forget:
+Paste these into any Slack channel:
 
 ```
-/remind me "Run /mastery in Claude Code" every Monday at 9am
-/remind me "Fill out 1:1 notes in Fellow" every Thursday at 4pm
-/remind me "Run /projects in Claude Code" every Friday at 4pm
+/remind me every Monday at 8:30am "🌅 Run /weekprep in Claude to get your weekly briefing"
 ```
 
-## Usage
-
-Open Claude Code (CLI or VS Code) and type:
-
 ```
-/mastery     # Monday morning growth check-in
-/projects    # Friday afternoon work report
+/remind me every Thursday at 4pm "📣 Run /projectupdate in Claude to post your weekly project update"
 ```
 
-## How it works
+```
+/remind me every other Friday at 8:30am "🧭 Manager 1:1 prep — /mastery, fill out Fellow agenda, name what work is suffering not how busy you feel"
+```
 
-Both skills follow the same pattern:
+Anchor the bi-weekly Friday on a real 1:1 week so the cadence aligns.
 
-1. **Pull context** from your tools (Slack, Fellow, Obsidian) if connected
+## How a skill conversation works
+
+All skills follow the same pattern:
+
+1. **Pull context** from your tools (Slack, Fellow, Obsidian, Drive) if connected
 2. **Ask you questions** one at a time, like a conversation
-3. **Generate a report** based on your answers + whatever context it found
+3. **Generate output** based on your answers + whatever context it found
 4. **Review loop** where you can tweak the output until it feels right
+5. **Save to Obsidian** so it compounds
 
 The key thing: these help you articulate what you think about what happened. That's the part most people skip, and it's the part that matters most.
 
@@ -149,13 +200,17 @@ The key thing: these help you articulate what you think about what happened. Tha
 
 These skills are just markdown files. Edit them however you want:
 
-- Change the questions it asks
-- Adjust the report template
-- Add or remove MCP integrations
+- Change the questions
+- Adjust the report templates
+- Add or remove integrations
 - Tune the voice and tone rules
 - Change where reports get saved
+- Hard-code your own paths instead of `~/Documents/Obsidian/...`
+
+If your Obsidian vault lives somewhere else, find-and-replace the paths.
 
 ## Requirements
 
-- Claude Code CLI or VS Code extension
-- Optional: callm-for-slack, obsidian, fellow-mcp servers configured
+- Claude Code CLI or VS Code extension (or [pi](https://github.com/badlogic/pi-mono))
+- Optional: Fellow, Slack, Google Workspace tools configured
+- Optional: Obsidian (or any markdown editor)

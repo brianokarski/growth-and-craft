@@ -1,0 +1,5 @@
+.DS_Store
+
+# Local-only review prompt files (often org-internal)
+references/*.md
+!references/README.md
